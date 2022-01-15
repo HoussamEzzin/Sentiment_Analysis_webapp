@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.2</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>ma.ac.emi.ginfo</groupId>
+	<artifactId>Sentiment_Analysis_webapp</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Sentiment_Analysis_webapp</name>
+	<description>App web mvc</description>
+	<properties>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+	</properties>
+	<repositories>
+    <repository>
+        <id>safar-repo-id</id>
+        <name>safar-repo</name>
+        <url>http://arabic.emi.ac.ma/maven</url>
+    </repository>
+</repositories>
+	<dependencies>
+	<dependency>
+        <groupId>org.safar</groupId>
+        <artifactId>safar-lemmatizer</artifactId>
+        <version>3.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>org.safar</groupId>
+        <artifactId>safar-util</artifactId>
+        <version>3.0-SNAPSHOT</version>
+    </dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-youtube -->
+		 <!-- YouTube Data V3 support -->
+		 <dependency>
+				 <groupId>com.google.apis</groupId>
+				 <artifactId>google-api-services-youtube</artifactId>
+				 <version>LATEST</version>
+		 </dependency>
+
+		 <!-- Required for any code that makes calls to the YouTube Analytics API -->
+     <dependency>
+         <groupId>com.google.apis</groupId>
+         <artifactId>google-api-services-youtubeAnalytics</artifactId>
+         <version>LATEST</version>
+     </dependency>
+
+     <!-- Required for any code that makes calls to the YouTube Reporting API -->
+     <dependency>
+         <groupId>com.google.apis</groupId>
+         <artifactId>google-api-services-youtubereporting</artifactId>
+         <version>LATEST</version>
+     </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
