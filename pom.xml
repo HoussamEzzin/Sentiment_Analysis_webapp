@@ -72,6 +72,23 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+				 <groupId>org.codehaus.jackson</groupId>
+				 <artifactId>jackson-mapper-asl</artifactId>
+				 <version>1.9.4</version>
+		 </dependency>
+
+		 <dependency>
+				 <groupId>com.google.http-client</groupId>
+				 <artifactId>google-http-client-jackson2</artifactId>
+				 <version>LATEST</version>
+		 </dependency>
+		<dependency>
+   <groupId>commons-configuration</groupId>
+   <artifactId>commons-configuration</artifactId>
+   <version>1.9</version>
+</dependency>
+	
 	</dependencies>
 
 	<build>

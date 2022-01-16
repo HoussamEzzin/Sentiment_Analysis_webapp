@@ -1,0 +1,105 @@
+package ma.ac.emi.ginfo.service;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AnalyzeServiceImpl implements AnalyzeService{
+	
+
+	
+	
+	
+	public AnalyzeServiceImpl() {
+		
+	}
+	
+
+
+	
+
+	private int checkForPos(String token,ArrayList<String> highPos,ArrayList<String> mediumPos,ArrayList<String> lowPos) {
+		int score = 0;
+		
+		if (highPos.contains(token)){
+			score += 3;
+		}
+		else if(mediumPos.contains(token)) {
+			score += 2;
+		}
+		else if(lowPos.contains(token)) {
+			score += 1;
+		}
+		return score;
+	}
+	
+	private int checkForNeg(String token,ArrayList<String> highNeg,ArrayList<String> mediumNeg,ArrayList<String> lowNeg) {
+		int score = 0;
+		
+		if (highNeg.contains(token)){
+			score -= 3;
+		}
+		else if(mediumNeg.contains(token)) {
+			score -= 2;
+		}
+		else if(lowNeg.contains(token)) {
+			score -= 1;
+		}
+		return score;
+	}
+	
+	private int negationWordsChecker(String nextToken,
+			ArrayList<String> highPos,ArrayList<String> mediumPos,ArrayList<String> lowPos,
+			ArrayList<String> highNeg,ArrayList<String> mediumNeg,ArrayList<String> lowNeg
+			
+			) {
+		int score = 0;
+		if (checkForPos(nextToken,highPos,mediumPos,lowPos) != 0) {
+			score -= 1;
+		}else if(checkForNeg(nextToken,highNeg,mediumNeg,lowNeg) != 0) {
+			score += 1;
+		}else {
+			score -= 1;
+		}
+		return score;
+	}
+	
+	@Override
+	public int determineScore(ArrayList<String> tokens,
+			ArrayList<String> highPos,ArrayList<String> mediumPos,ArrayList<String> lowPos,
+			ArrayList<String> highNeg,ArrayList<String> mediumNeg,ArrayList<String> lowNeg,
+			ArrayList<String> negationWords
+			){
+        int score = 0;
+
+       for(int j=0; j<tokens.size();j++) {
+    	   if(negationWords.contains(tokens.get(j))) {
+    		   score += negationWordsChecker(tokens.get(j+1),highPos,mediumPos,lowPos,
+    				   highNeg,mediumNeg,lowNeg); 
+    	   }else {
+    		   score += checkForPos(tokens.get(j),highPos,mediumPos,lowPos);
+    		   score += checkForNeg(tokens.get(j),highNeg,mediumNeg,lowNeg);
+    	   }	   
+       }
+        return score;
+    }
+	
+	
+	@Override
+	public String getSentiment(int score) {
+		String emotion;
+		if(score > 0) {
+			emotion = "Positive";
+		}else if (score < 0) {
+			emotion = "Negative";
+		}else {
+			emotion = "Neutral";
+		}
+		return emotion;
+	}
+
+	
+}
