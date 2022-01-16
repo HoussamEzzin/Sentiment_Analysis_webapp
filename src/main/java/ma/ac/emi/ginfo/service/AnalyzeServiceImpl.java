@@ -12,41 +12,54 @@ public class AnalyzeServiceImpl implements AnalyzeService{
 
 	
 	
-	
-	public AnalyzeServiceImpl() {
-		
-	}
-	
 
 
 	
 
 	private int checkForPos(String token,ArrayList<String> highPos,ArrayList<String> mediumPos,ArrayList<String> lowPos) {
 		int score = 0;
+		token = token.strip();
+		for(String highPosString: highPos) {
+			
+			if(highPosString.equals(token)) {
+				score += 3;
+			}
+		}
+		for(String mediumPosString: mediumPos) {
+			if(mediumPosString.equals(token)) {
+				score += 2;
+			}
+		}
+		for(String lowPosString: lowPos) {
+			if(lowPosString.equals(token)) {
+				score += 1;
+			}
+		}
 		
-		if (highPos.contains(token)){
-			score += 3;
-		}
-		else if(mediumPos.contains(token)) {
-			score += 2;
-		}
-		else if(lowPos.contains(token)) {
-			score += 1;
-		}
 		return score;
 	}
 	
 	private int checkForNeg(String token,ArrayList<String> highNeg,ArrayList<String> mediumNeg,ArrayList<String> lowNeg) {
 		int score = 0;
-		
-		if (highNeg.contains(token)){
-			score -= 3;
+//		System.out.println("***************");
+		token  = token.strip();
+		for(String highNegString: highNeg) {
+			if(highNegString.equals(token)) {
+				System.out.println("******************************");
+				score -= 3;
+			}
 		}
-		else if(mediumNeg.contains(token)) {
-			score -= 2;
+		for(String mediumNegString: mediumNeg) {
+			if(mediumNegString.equals(token)) {
+				System.out.println("**************************");
+				score -= 2;
+			}
 		}
-		else if(lowNeg.contains(token)) {
-			score -= 1;
+		for(String lowNegString: lowNeg) {
+			if(lowNegString.equals(token)) {
+				System.out.println("*****************************");
+				score -= 1;
+			}
 		}
 		return score;
 	}
@@ -73,17 +86,18 @@ public class AnalyzeServiceImpl implements AnalyzeService{
 			ArrayList<String> highNeg,ArrayList<String> mediumNeg,ArrayList<String> lowNeg,
 			ArrayList<String> negationWords
 			){
-        int score = 0;
+       int score = 0;
 
-       for(int j=0; j<tokens.size();j++) {
-    	   if(negationWords.contains(tokens.get(j))) {
-    		   score += negationWordsChecker(tokens.get(j+1),highPos,mediumPos,lowPos,
-    				   highNeg,mediumNeg,lowNeg); 
-    	   }else {
-    		   score += checkForPos(tokens.get(j),highPos,mediumPos,lowPos);
-    		   score += checkForNeg(tokens.get(j),highNeg,mediumNeg,lowNeg);
-    	   }	   
-       }
+	       for(int j=0; j<tokens.size();j++) {
+	    	   if(negationWords.contains(tokens.get(j))) {
+	    		   score += negationWordsChecker(tokens.get(j+1),highPos,mediumPos,lowPos,
+	    				   highNeg,mediumNeg,lowNeg); 
+	    	   }
+	    	   score += checkForPos(tokens.get(j),highPos,mediumPos,lowPos);
+	    	   score += checkForNeg(tokens.get(j),highNeg,mediumNeg,lowNeg);
+//	    	   System.out.println("NEGATIVES : "+checkForNeg(tokens.get(j),highNeg,mediumNeg,lowNeg));
+	    	   	   
+	       }
         return score;
     }
 	

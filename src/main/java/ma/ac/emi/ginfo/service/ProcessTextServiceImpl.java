@@ -20,38 +20,45 @@ public class ProcessTextServiceImpl implements ProcessTextService {
 		this.safarService = safarService;
 	}
 	@Override
-	public ArrayList<String> processText(String input){
-        ArrayList<String> result = new ArrayList<String>();
-        
-      
-//        Normalizer normalizer = new Normalizer();
-//        Lemmatizer lemmatizer = new Lemmatizer();
-//        RemoveStepWords removeStepWords = new RemoveStepWords();
+	public ArrayList<String> processTextInput(String text) throws  StringIndexOutOfBoundsException{
 
-        input = safarService.normalize(input);
-        input = safarService.removeStepWords(input);
+        // simulation : this is out input comment and now we gonna process it
+        //in order to provide the right token
 
-        if(input.isEmpty()){
-            input += ',';
-        }try {
-            try{
-                List<WordLemmatizerAnalysis> lemmas = safarService.lemmatize(input);
-                for(WordLemmatizerAnalysis wordAnalysis : lemmas){
-                    for(LemmatizerAnalysis analysis : wordAnalysis.getStandardAnalysisList()){
-                        String token = safarService.normalize(analysis.getLemma());
-                        result.add(token);
-                    }
-                }
-            }catch (NullPointerException e){
-                System.out.println("Null Pointer Exception , Comment : "+input);
+
+        ArrayList<String> all_tokens = new ArrayList<String>();
+
+
+     
+
+        text = safarService.normalize(text);
+
+        text = safarService.removeStepWords(text);
+
+
+
+        if(text.isEmpty() ){
+            text += ",";
+        }
+        try{
+            List<WordLemmatizerAnalysis> lemmas = safarService.lemmatize(text);
+            for(WordLemmatizerAnalysis wordAnalysis : lemmas){
+
+                all_tokens.add(safarService.normalize(wordAnalysis.getStandardAnalysisList().get(0).getLemma()));
+
+
             }
-
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Comment is "+text);
         }catch (IndexOutOfBoundsException e){
-            System.out.println("Comment : "+input);
+            System.out.println("Comment is "+text);
         }
 
 
-        return result;
+
+
+//        System.out.println("ALL TOKENS : "+all_tokens);
+        return all_tokens;
     }
 	
 

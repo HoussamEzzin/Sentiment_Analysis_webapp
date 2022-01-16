@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ProcessTextService {
 	
-	ArrayList<String> processText(String input);
+
 	void setSafarService(SafarService safarService);
+	ArrayList<String> processTextInput(String text) throws StringIndexOutOfBoundsException;
 
 }

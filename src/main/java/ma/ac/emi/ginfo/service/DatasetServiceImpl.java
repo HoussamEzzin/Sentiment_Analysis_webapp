@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
@@ -33,13 +34,13 @@ public class DatasetServiceImpl implements DatasetService {
         try {
 
             BufferedReader in = new BufferedReader(
-                    new InputStreamReader(new FileInputStream(file), "Windows-1256"));
+                    new InputStreamReader(new FileInputStream(file), "UTF-8"));
 
             String str;
 
             while ((str = in.readLine()) != null) {
 //                System.out.println(str);
-                array.add(str);
+                array.add(str.strip());
             }
 
             in.close();
@@ -55,20 +56,26 @@ public class DatasetServiceImpl implements DatasetService {
 	
 	@Override
 	public void populateDataservice() throws IOException {
-		Resource highPosResource = loader.getResource("classpath:static/high_pos.txt");
-		Resource mediumPosResource = loader.getResource("classpath:static/medium_pos.txt");
-		Resource lowPosResource = loader.getResource("classpath:static/low_pos.txt");
-		Resource highNegResource = loader.getResource("classpath:static/high_neg.txt");
-		Resource mediumNegResource = loader.getResource("classpath:static/medium_neg.txt");
-		Resource lowNegResource = loader.getResource("classpath:static/low_neg.txt");
-		Resource negationWordsResource = loader.getResource("classpath:static/negationWords.txt");
-		this.highPos = convertFileToArrayList(highPosResource.getFile());
-		this.mediumPos = convertFileToArrayList(mediumPosResource.getFile());
-		this.lowPos =convertFileToArrayList(lowPosResource.getFile());
-		this.highNeg = convertFileToArrayList(highNegResource.getFile());
-		this.mediumNeg = convertFileToArrayList(mediumNegResource.getFile());
-		this.lowNeg = convertFileToArrayList(lowNegResource.getFile());
-		this.negationWords = convertFileToArrayList(negationWordsResource.getFile());
+		
+			File highPosFile = new ClassPathResource("high_pos.txt").getFile();
+			File mediumPosFile = new ClassPathResource("medium_pos.txt").getFile();
+			File lowPosFile = new ClassPathResource("low_pos.txt").getFile();
+			File highNegFile = new ClassPathResource("high_neg.txt").getFile();
+			File mediumNegFile = new ClassPathResource("medium_neg.txt").getFile();
+			File lowNegFile = new ClassPathResource("low_neg.txt").getFile();
+			File negationWordsFile = new ClassPathResource("negationWords.txt").getFile();
+		
+			this.highPos = convertFileToArrayList(highPosFile);
+			this.mediumPos = convertFileToArrayList(mediumPosFile);
+			this.lowPos =convertFileToArrayList(lowPosFile);
+			this.highNeg = convertFileToArrayList(highNegFile);
+			this.mediumNeg = convertFileToArrayList(mediumNegFile);
+			this.lowNeg = convertFileToArrayList(lowNegFile);
+			this.negationWords = convertFileToArrayList(negationWordsFile);
+			
+			
+		
+		
 	}
 	
 
