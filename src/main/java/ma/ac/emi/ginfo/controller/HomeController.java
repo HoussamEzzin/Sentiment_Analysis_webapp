@@ -3,13 +3,18 @@ package ma.ac.emi.ginfo.controller;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.graalvm.compiler.lir.aarch64.AArch64Unary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
@@ -18,6 +23,7 @@ import com.google.api.services.youtube.model.Comment;
 import com.google.api.services.youtube.model.CommentThread;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import com.google.api.services.youtube.model.CommentThreadReplies;
+import com.kenai.jaffl.annotations.In;
 
 import ma.ac.emi.ginfo.service.AnalyzeService;
 import ma.ac.emi.ginfo.service.DatasetService;
@@ -90,29 +96,32 @@ public class HomeController {
         
         }
 	@GetMapping("/")
-	public List<String> home() throws Exception {
-		int score = 0;
+	public Map<List<String>, List<Integer>> home() throws Exception {
+		Integer score = 0;
+		int commentScore = 0;
+		Integer countPos = 0;
+		Integer countNeg = 0;
+		List<Integer> results = new ArrayList<Integer>();
 		String emotion = "none";
 //		YouTube youtubeService = getService();
         // Define and execute the API request
-		String videoId = "AfuDJN7Y6w4";
-		
-		
+		String videoId = "PV58v_nj7xM";
+
 		
 		datasetService.populateDataservice();
 		processTextService.setSafarService(safarService);
 		
 //		System.out.println(datasetService.getHighNeg());
 		
-		List<String> allComments = new ArrayList<>();
+		Map<List<String>, List<Integer>>  allComments = new HashMap<List<String>, List<Integer>>();
 		
 		CommentThreadListResponse commentsPage = prepareListRequest(videoId).execute();
 		
-	
+		List<String> allCommentsText = new ArrayList<>();
 		
 		
 		while(true) {
-			handleCommentsThreads(commentsPage.getItems(),allComments);
+			handleCommentsThreads(commentsPage.getItems(),allCommentsText);
 			
 			String nextPageToken = commentsPage.getNextPageToken();
 			if(nextPageToken == null) {
@@ -123,25 +132,52 @@ public class HomeController {
 			
 		}
 		int k = 0;
-		for(String comment_text: allComments) {
-			System.out.println(k+"/"+allComments.size());
+		List<String> commentWithEmotion = new ArrayList<>();
+		for(String comment_text: allCommentsText) {
+			if( k == 100 ) {
+				break;
+			}
+			System.out.println(k+"/"+allCommentsText.size());
+			
+			
 			k++;
+			if(k<6) {
+				commentWithEmotion.add(comment_text);
+			}
+			
 			ArrayList<String> tokens = processTextService.processTextInput(comment_text);
+//			for(String token : tokens) {
+//				commentWithEmotion.add(token);
+//			}
 //			System.out.println("TOKENS :"+tokens+"// SCORE :"+analyzeService.determineScore(tokens, datasetService.getHighPos(), 
 //					datasetService.getMediumPos(), datasetService.getLowPos(), 
 //					datasetService.getHighNeg(), datasetService.getMediumNeg(), 
 //					datasetService.getLowNeg(), datasetService.getNegationWords()));
-			
-			score += analyzeService.determineScore(tokens, datasetService.getHighPos(), 
+			commentScore = analyzeService.determineScore(tokens, datasetService.getHighPos(), 
 					datasetService.getMediumPos(), datasetService.getLowPos(), 
 					datasetService.getHighNeg(), datasetService.getMediumNeg(), 
 					datasetService.getLowNeg(), datasetService.getNegationWords());
+			score += commentScore;
+//			emotion = analyzeService.getSentiment(commentScore);
+//			commentWithEmotion.add(emotion);
+			if(commentScore > 0) {
+				countPos++;
+			}else if (commentScore < 0) {
+				countNeg++;
+			}
 			
 			
-			System.out.println("ACTUAL SCORE :"+score);
+			System.out.println("ACTUAL SCORE :"+commentScore);
 	}
-		emotion = analyzeService.getSentiment(score);
-		allComments.add(emotion);
+		
+		Integer posPourcentage = (countPos*100)/100;
+		Integer negPourcentage = (countNeg*100)/100;
+		Integer neutralPourcentage = 100 - posPourcentage - negPourcentage;
+		results.add(posPourcentage);
+		results.add(negPourcentage);
+		results.add(neutralPourcentage);
+		allComments.put(commentWithEmotion, results);
+
 		return allComments;}
 
 }

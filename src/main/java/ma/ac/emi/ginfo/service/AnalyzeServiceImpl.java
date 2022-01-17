@@ -19,6 +19,9 @@ public class AnalyzeServiceImpl implements AnalyzeService{
 	private int checkForPos(String token,ArrayList<String> highPos,ArrayList<String> mediumPos,ArrayList<String> lowPos) {
 		int score = 0;
 		token = token.strip();
+		if( token.equals("")) {
+			return 0;
+		}
 		for(String highPosString: highPos) {
 			
 			if(highPosString.equals(token)) {
@@ -43,22 +46,25 @@ public class AnalyzeServiceImpl implements AnalyzeService{
 		int score = 0;
 //		System.out.println("***************");
 		token  = token.strip();
+		if( token.equals("")) {
+			return 0;
+		}
 		for(String highNegString: highNeg) {
 			if(highNegString.equals(token)) {
-				System.out.println("******************************");
-				score -= 3;
+			
+				score -= 1;
 			}
 		}
 		for(String mediumNegString: mediumNeg) {
 			if(mediumNegString.equals(token)) {
-				System.out.println("**************************");
-				score -= 2;
+		
+				score -= 4;
 			}
 		}
 		for(String lowNegString: lowNeg) {
 			if(lowNegString.equals(token)) {
-				System.out.println("*****************************");
-				score -= 1;
+			
+				score -= 7;
 			}
 		}
 		return score;

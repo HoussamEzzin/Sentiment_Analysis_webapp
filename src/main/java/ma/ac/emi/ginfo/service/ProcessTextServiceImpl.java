@@ -43,9 +43,9 @@ public class ProcessTextServiceImpl implements ProcessTextService {
         try{
             List<WordLemmatizerAnalysis> lemmas = safarService.lemmatize(text);
             for(WordLemmatizerAnalysis wordAnalysis : lemmas){
-
-                all_tokens.add(safarService.normalize(wordAnalysis.getStandardAnalysisList().get(0).getLemma()));
-
+            	
+//                all_tokens.add(safarService.normalize(wordAnalysis.getStandardAnalysisList().get(0).getLemma()));
+            	all_tokens.add(wordAnalysis.getInputWord());
 
             }
         }catch (ArrayIndexOutOfBoundsException e){
