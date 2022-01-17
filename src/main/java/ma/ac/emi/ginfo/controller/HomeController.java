@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.graalvm.compiler.lir.aarch64.AArch64Unary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -95,8 +95,9 @@ public class HomeController {
         }
         
         }
+    
 	@GetMapping("/")
-	public Map<List<String>, List<Integer>> home() throws Exception {
+	public List<String> home(@RequestParam String videoId) throws Exception {
 		Integer score = 0;
 		int commentScore = 0;
 		Integer countPos = 0;
@@ -105,7 +106,7 @@ public class HomeController {
 		String emotion = "none";
 //		YouTube youtubeService = getService();
         // Define and execute the API request
-		String videoId = "PV58v_nj7xM";
+//		String videoId = "PV58v_nj7xM";
 
 		
 		datasetService.populateDataservice();
@@ -113,7 +114,7 @@ public class HomeController {
 		
 //		System.out.println(datasetService.getHighNeg());
 		
-		Map<List<String>, List<Integer>>  allComments = new HashMap<List<String>, List<Integer>>();
+		List<String>  allComments = new ArrayList<>();
 		
 		CommentThreadListResponse commentsPage = prepareListRequest(videoId).execute();
 		
@@ -170,14 +171,18 @@ public class HomeController {
 			System.out.println("ACTUAL SCORE :"+commentScore);
 	}
 		
-		Integer posPourcentage = (countPos*100)/100;
-		Integer negPourcentage = (countNeg*100)/100;
-		Integer neutralPourcentage = 100 - posPourcentage - negPourcentage;
-		results.add(posPourcentage);
-		results.add(negPourcentage);
-		results.add(neutralPourcentage);
-		allComments.put(commentWithEmotion, results);
+		int posPourcentage = (countPos*100)/100;
+		int negPourcentage = (countNeg*100)/100;
+		int neutralPourcentage = 100 - posPourcentage - negPourcentage;
+//		results.add(posPourcentage);
+//		results.add(negPourcentage);
+//		results.add(neutralPourcentage);
+//		allComments.put(commentWithEmotion, results);
+		commentWithEmotion.add(String.valueOf(posPourcentage));
+		commentWithEmotion.add(String.valueOf(negPourcentage));
+		commentWithEmotion.add(String.valueOf(neutralPourcentage));
+		
 
-		return allComments;}
+		return commentWithEmotion;}
 
 }
