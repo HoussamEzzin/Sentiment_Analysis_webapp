@@ -159,8 +159,11 @@ public class HomeController {
 					datasetService.getHighNeg(), datasetService.getMediumNeg(), 
 					datasetService.getLowNeg(), datasetService.getNegationWords());
 			score += commentScore;
-//			emotion = analyzeService.getSentiment(commentScore);
-//			commentWithEmotion.add(emotion);
+			if(k<6) {
+				emotion = analyzeService.getSentiment(commentScore);
+				commentWithEmotion.add(emotion);
+			}
+			
 			if(commentScore > 0) {
 				countPos++;
 			}else if (commentScore < 0) {
