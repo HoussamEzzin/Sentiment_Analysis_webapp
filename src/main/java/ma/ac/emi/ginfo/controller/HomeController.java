@@ -135,7 +135,7 @@ public class HomeController {
 		int k = 0;
 		List<String> commentWithEmotion = new ArrayList<>();
 		for(String comment_text: allCommentsText) {
-			if( k == 100 ) {
+			if( k == 7 ) {
 				break;
 			}
 			System.out.println(k+"/"+allCommentsText.size());
@@ -147,6 +147,11 @@ public class HomeController {
 			}
 			
 			ArrayList<String> tokens = processTextService.processTextInput(comment_text);
+			if(k==1) {
+				for(String token: tokens) {
+					System.out.println(token);
+				}
+			}
 //			for(String token : tokens) {
 //				commentWithEmotion.add(token);
 //			}
