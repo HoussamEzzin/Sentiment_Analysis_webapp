@@ -4,6 +4,7 @@ import Result from "./Result";
 import logo from './index.jpg';
 import './Home.css'
 import './home.sass'
+import './home.scss'
 
 class Home extends Component{
 
@@ -15,6 +16,7 @@ class Home extends Component{
             submit:'',
             refresh: false,
             empty: false,
+            valid:true,
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -30,29 +32,47 @@ class Home extends Component{
 
     handleSubmit = (event) =>{
         event.preventDefault();
+
+        let validationPattern =/^(http(s)??\:\/\/)?(www\.)?((youtube\.com\/watch\?v=)|(youtu.be\/))([a-zA-Z0-9\-_])+$/g;
+
         if(this.state.refresh === false){
-            this.setState({
-                refresh:true
-            });
             if(this.state.value === ''){
                 this.setState({
                     empty: true,
+                    valid:true
                 })
+            }
+            else{
+                if(this.state.value.match(validationPattern)=== null){
+                    this.setState({
+                        valid: false,
+                        empty:false
+                    });
+                }else{
+                    this.setState({
+                        submit: this.state.value,
+                        value:'',
+                        valid: true,
+                        refresh:true,
+                        empty:false,
+                    });
+                }
+                // this.setState({
+                //
+                //
+                // });
             }
         }else{
             this.setState({
-                refresh:false
+                refresh:false,
+                submit:''
             });
 
         }
+        console.log(this.state.value.match(validationPattern))
 
 
 
-        this.setState({
-            submit: this.state.value,
-            value:'',
-
-        });
 
 
     }
@@ -90,9 +110,13 @@ class Home extends Component{
                                         </span>
                                         </label>
                                         {this.state.empty ? (
-                                            <span style={{color:"red",fontSize:"14px"}}>Insert a video URL please.</span>
+                                            <span style={{color:"red",fontSize:"14px"}}>Insert a video URL please !</span>
                                         ):
                                             null
+
+                                        }
+                                        {this.state.valid ? null:
+                                            <span style={{color:"red",fontSize:"14px"}}>Invalid URL !</span>
 
                                         }
                                     </div>
@@ -103,7 +127,7 @@ class Home extends Component{
                                     {this.state.refresh ? (
                                         <button type='submit' onClick={this.handleSubmit}  className="btn btn-info refresh-button" >REFRESH</button>
                                     ):
-                                        <button type='submit'  className="btn btn-primary analyze-button" >ANALYZE!</button>
+                                        <button type='submit'  className="analyze-button button" >ANALYZE!</button>
                                     }
 
                                 </div>

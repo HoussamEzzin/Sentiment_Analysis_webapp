@@ -1,26 +1,90 @@
 .result-section{
     margin-top:80px;
 }
+@media only screen and (max-width: 600px) {
+    .result-numbers{
+        max-width:100px !important;
+        min-width:250px !important;
+        flex-direction: column !important;
+        min-height: 400px;
+    }
+    .loading-section{
+        flex-direction: column !important;
+    }
+}
+.fa-smile-beam{
+    color:green;
+}
+.fa-frown{
+    color:red;
+}
+.fa-meh{
+    color:blue;
+}
+
+.bounce-three{
+    margin:5px;
+}
+
+.loading-section{
+    background-color: rgba(49,203,241,255);
+
+    max-width: 800px;
+    margin-top: 40px;
+    padding: 10px;
+    border-radius: 5%;
+    border: 1px solid black;
+}
 
 .loading-text{
     font-size: 25px ;
-    font-family: 'Mochiy Pop P One', sans-serif;
-}
+    font-family: 'Abril Fatface', cursive;
 
+    font-family: 'Amatic SC', cursive;
+
+    font-family: 'Changa', sans-serif;
+
+    font-family: 'Luxurious Roman', cursive;
+
+    font-family: 'Shadows Into Light', cursive;
+    line-height: 30px;
+    color:black;
+}
+.table-emotion{
+    font-family: 'Abril Fatface', cursive;
+
+    font-family: 'Amatic SC', cursive;
+
+    font-family: 'Changa', sans-serif;
+
+    font-family: 'Shadows Into Light', cursive;
+}
 .emoji{
     width:70px;
     height:70px;
 }
 .result-percentage{
-    font-family: 'Mochiy Pop P One', sans-serif;
+    font-family: 'Changa', sans-serif;
+
+    font-family: 'Shadows Into Light', cursive;
+
+
 }
 .comments-table{
-    background-color: navajowhite !important;
+    background-color: rgba(253,190,136,255) !important;
     height: 100%;
+    margin:40px;
+
 }
 .result-numbers{
     width: 600px;
     margin: 40px;
-    background-color: white !important;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(202, 149, 255), rgb(255, 255, 255)) repeat scroll 0% 0% !important;
     height: 250px;
+    border-radius: 10%;
+    font-size:22px;
+    min-width:500px;
+}
+.arabic-comment{
+    font-family: 'Changa', sans-serif;
 }

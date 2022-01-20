@@ -102,6 +102,7 @@ public class HomeController {
 		int commentScore = 0;
 		Integer countPos = 0;
 		Integer countNeg = 0;
+		Integer countNeutral = 0;
 		List<Integer> results = new ArrayList<Integer>();
 		String emotion = "none";
 //		YouTube youtubeService = getService();
@@ -135,7 +136,7 @@ public class HomeController {
 		int k = 0;
 		List<String> commentWithEmotion = new ArrayList<>();
 		for(String comment_text: allCommentsText) {
-			if( k == 35 ) {
+			if( k == 7 ) {
 				break;
 			}
 			System.out.println(k+"/"+allCommentsText.size());
@@ -147,7 +148,7 @@ public class HomeController {
 			}
 			
 			ArrayList<String> tokens = processTextService.processTextInput(comment_text);
-			if(k==1) {
+			if(k==3) {
 				for(String token: tokens) {
 					System.out.println(token);
 				}
@@ -173,6 +174,8 @@ public class HomeController {
 				countPos++;
 			}else if (commentScore < 0) {
 				countNeg++;
+			}else {
+				countNeutral++;
 			}
 			
 			
@@ -181,7 +184,7 @@ public class HomeController {
 		
 		int posPourcentage = (countPos*100)/allCommentsText.size();
 		int negPourcentage = (countNeg*100)/allCommentsText.size();
-		int neutralPourcentage = 100 - posPourcentage - negPourcentage;
+		int neutralPourcentage =(countNeutral*100)/allCommentsText.size() ;
 //		results.add(posPourcentage);
 //		results.add(negPourcentage);
 //		results.add(neutralPourcentage);

@@ -7,9 +7,11 @@ import sad from "./sad.png";
 import neutral from "./neutral.png";
 import Loader from "./Loader";
 import LoadingEffect from "react-loading-text";
+import ThreeBounce from "better-react-spinkit/dist/ThreeBounce";
+
 
 class Result extends Component{
-
+//d
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +24,8 @@ class Result extends Component{
 
 
     componentDidMount() {
-        if(this.props.videoId !== ''){
+        // let validationPattern = /https:\/\/www.youtube.com\/watch?v=/i;
+        if(this.props.videoId !== '' ){
             let videoId = this.props.videoId.replace("https://www.youtube.com/watch?v=","");
             HomeService.getResult(videoId)
                 .then(res => {
@@ -70,14 +73,14 @@ class Result extends Component{
     render(){
 
         return(
-            <div className="container">
+            <div className="container d-flex align-items-center justify-content-center align-content-center">
                 {this.state.loaded ? (
-                    <div className="d-flex flex-row result-section">
+                    <div className="d-flex  result-section ">
                         <div className="comments-table">
-                            <table className="table table-bordered table-hover">
+                            <table className="table table-bordered border border-dark  table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Comment</th>
+                                    <th className="arabic-comment">Comment</th>
                                     <th>Sentiment</th>
                                 </tr>
                                 </thead>
@@ -90,13 +93,13 @@ class Result extends Component{
                                             <tr>
                                                 <td>{comment["text"]}</td>
                                                 {comment.emotion === "Positive" &&
-                                                    <td style={{color:"green"}}>{comment.emotion}</td>
+                                                    <td className="table-emotion" style={{color:"green"}}>{comment.emotion}</td>
                                                 }
                                                 {comment.emotion === "Negative" &&
-                                                <td style={{color:"red"}}>{comment.emotion}</td>
+                                                    <td className="table-emotion" style={{color:"red"}}>{comment.emotion}</td>
                                                 }
                                                 {comment.emotion === "Neutral" &&
-                                                <td style={{color:"blue"}}>{comment.emotion}</td>
+                                                    <td className="table-emotion" style={{color:"blue"}}>{comment.emotion}</td>
                                                 }
 
 
@@ -104,37 +107,38 @@ class Result extends Component{
                                     )
                                 }
 
-
                                 </tbody>
                             </table>
                         </div>
-                        <div className="d-flex flex-row justify-content-around align-items-center result-numbers">
+                        <div className="d-flex  justify-content-around align-items-center result-numbers">
                             <div>
-                                <img src={happy} alt="happy" className="emoji"/>
+                                {/*<img src={happy} alt="happy" className="emoji"/>*/}
+                                <i className="fas fa-smile-beam fa-4x"/>
                                 <p className="result-percentage" style={{color:"green"}}>Positive {this.state.numbers[0]}%</p>
 
                             </div>
                             <div>
-                                <img src={sad} alt="sad" className="emoji"/>
+                                <i className="fas fa-frown fa-4x"/>
                                 <p className="result-percentage" style={{color:"red"}}>Negative {this.state.numbers[1]}%</p>
 
                             </div>
                             <div>
-                                <img src={neutral} alt="neutral" className="emoji"/>
-                                <p className="result-percentage" style={{color:"blue"}}>Neutral : {this.state.numbers[2]}%</p>
+                                <i className="fas fa-meh fa-4x"/>
+                                <p className="result-percentage" style={{color:"blue"}}>Neutral  {this.state.numbers[2]}%</p>
 
                             </div>
 
                         </div>
                     </div>
-                ):<div className="result-section d-flex justify-content-around align-items-center ">
+                ):<div className="loading-section d-flex justify-content-evenly align-items-center ">
                     <div>
                         <LoadingEffect
                             style={{
                                 default: [
-                                    26,
-                                    7.5,
-                                    "rgba( 71, 147, 227, 1)",
+                                    30,
+                                    7,
+                                    "rgba(49,203,241,255)",
+
                                     2,
                                     1,
                                     "linear",
@@ -143,15 +147,20 @@ class Result extends Component{
                             }}
                         >
                             <p className="loading-text">
-                                Tokenization and lower case ... done
+                                Tokenization and lower case
+                                <ThreeBounce className="bounce-three"  timingFunction='linear' gutter={20} color={"black"} />
                                 <br/>
-                                Normalization ... done
+                                Normalization
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
                                 <br/>
-                                Removing step words ... done
+                                Removing step words
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
                                 <br/>
-                                Lemmatizing ... done
+                                Lemmatizing
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
                                 <br/>
-                                Calculating percentages ...
+                                Calculating percentages
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
 
 
                             </p>
@@ -160,6 +169,7 @@ class Result extends Component{
                     </div>
                     <div style={{margin:60}}>
                         <Loader/>
+
                     </div>
 
 
