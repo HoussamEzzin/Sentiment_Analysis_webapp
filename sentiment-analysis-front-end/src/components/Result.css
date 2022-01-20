@@ -1,0 +1,26 @@
+.result-section{
+    margin-top:80px;
+}
+
+.loading-text{
+    font-size: 25px ;
+    font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+.emoji{
+    width:70px;
+    height:70px;
+}
+.result-percentage{
+    font-family: 'Mochiy Pop P One', sans-serif;
+}
+.comments-table{
+    background-color: navajowhite !important;
+    height: 100%;
+}
+.result-numbers{
+    width: 600px;
+    margin: 40px;
+    background-color: white !important;
+    height: 250px;
+}

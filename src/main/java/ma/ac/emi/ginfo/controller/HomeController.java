@@ -135,7 +135,7 @@ public class HomeController {
 		int k = 0;
 		List<String> commentWithEmotion = new ArrayList<>();
 		for(String comment_text: allCommentsText) {
-			if( k == 7 ) {
+			if( k == 35 ) {
 				break;
 			}
 			System.out.println(k+"/"+allCommentsText.size());
@@ -179,8 +179,8 @@ public class HomeController {
 			System.out.println("ACTUAL SCORE :"+commentScore);
 	}
 		
-		int posPourcentage = (countPos*100)/100;
-		int negPourcentage = (countNeg*100)/100;
+		int posPourcentage = (countPos*100)/allCommentsText.size();
+		int negPourcentage = (countNeg*100)/allCommentsText.size();
 		int neutralPourcentage = 100 - posPourcentage - negPourcentage;
 //		results.add(posPourcentage);
 //		results.add(negPourcentage);
