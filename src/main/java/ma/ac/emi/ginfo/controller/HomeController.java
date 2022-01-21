@@ -148,11 +148,11 @@ public class HomeController {
 			}
 			
 			ArrayList<String> tokens = processTextService.processTextInput(comment_text);
-			if(k==3) {
-				for(String token: tokens) {
-					System.out.println(token);
-				}
-			}
+//			if(k==1) {
+//				for(String token: tokens) {
+//					System.out.println(token);
+//				}
+//			}
 //			for(String token : tokens) {
 //				commentWithEmotion.add(token);
 //			}

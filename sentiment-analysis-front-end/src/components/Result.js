@@ -159,9 +159,11 @@ class Result extends Component{
                                 Lemmatizing
                                 <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
                                 <br/>
-                                Calculating percentages
+                                Calculating score
                                 <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
-
+                                <br/>
+                                Determining sentiments
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
 
                             </p>
 
