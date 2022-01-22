@@ -98,6 +98,8 @@ public class HomeController {
     
 	@GetMapping("/")
 	public List<String> home(@RequestParam String videoId) throws Exception {
+		
+		System.out.println("NEW REQUEST RECIEVED");
 		Integer score = 0;
 		int commentScore = 0;
 		Integer countPos = 0;

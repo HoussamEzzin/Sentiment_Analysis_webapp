@@ -7,7 +7,7 @@ class HomeService{
 
 
     getResult(videoId){
-        console.log("video id :"+videoId)
+
         return axios.get(API_BASE_URL,{params: { videoId: videoId }});
     }
 }

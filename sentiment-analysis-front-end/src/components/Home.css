@@ -5,19 +5,13 @@
 }
 
 
-.analyze-button,.refresh-button{
+.analyze-button{
     font-family: 'Mochiy Pop P One', sans-serif;
     margin: 15px !important;
 
 }
 
-.refresh-button:hover{
-    background-color: black !important;
-    color: whitesmoke !important;
-    border: 1px white solid;
 
-
-}
 
 
 /*.analyze-button:hover{*/

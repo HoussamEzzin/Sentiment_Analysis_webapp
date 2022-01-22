@@ -14,67 +14,23 @@ class Result extends Component{
 //d
     constructor(props) {
         super(props);
-        this.state = {
-            data : [],
-            comments: [],
-            numbers:[],
-            loaded: false,
-        }
+        // this.state = {
+        //
+        // }
     }
 
 
-    componentDidMount() {
-        // let validationPattern = /https:\/\/www.youtube.com\/watch?v=/i;
-        if(this.props.videoId !== '' ){
-            let videoId = this.props.videoId.replace("https://www.youtube.com/watch?v=","");
-            HomeService.getResult(videoId)
-                .then(res => {
-                    if(res.status === 200){
-                        this.setState({
-                            data: res.data,
-                        });
-                        let all = this.state.data;
-                        let i = 0;
-                        while(true){
-                            let comment = {
-                                "text":all[i],
-                                "emotion":all[++i]
-                            }
-                            console.log("COMMENTS : "+comment.text);
-                            console.log("COMMENTS : "+comment["text"]);
-                            this.state.comments.push(comment);
-                            i++;
-                            if(i>9){
-                                break;
-                            }
-
-                        }
-                        console.log("COMMENTS : "+this.state.comments[0]);
-
-                        for(let i = 10 ;i<=12;i++){
-                            this.state.numbers.push(all[i]);
-                        }
-
-                        this.setState({
-                            loaded: true
-                        })
-                        // console.log("DATA : "+current[0]);
-                    }else{
-                        console.log('problem')
-                    }
-                }).catch(error => console.log(error));
-        }
-        else{
-            console.log("nothing yet");
-        }
-    }
+    // componentDidMount() {
+    //     // let validationPattern = /https:\/\/www.youtube.com\/watch?v=/i;
+    //
+    // }
 
 
     render(){
 
         return(
             <div className="container d-flex align-items-center justify-content-center align-content-center">
-                {this.state.loaded ? (
+                {this.props.loaded ? (
                     <div className="d-flex  result-section ">
                         <div className="comments-table">
                             <table className="table table-bordered border border-dark  table-hover">
@@ -88,7 +44,7 @@ class Result extends Component{
                                 {/* process data in commponent */}
                                 <tbody>
                                 {
-                                    this.state.comments.map(
+                                    this.props.comments.map(
                                         comment =>
                                             <tr>
                                                 <td>{comment["text"]}</td>
@@ -114,17 +70,17 @@ class Result extends Component{
                             <div>
                                 {/*<img src={happy} alt="happy" className="emoji"/>*/}
                                 <i className="fas fa-smile-beam fa-4x"/>
-                                <p className="result-percentage" style={{color:"green"}}>Positive {this.state.numbers[0]}%</p>
+                                <p className="result-percentage" style={{color:"green"}}>Positive {this.props.numbers[0]}%</p>
 
                             </div>
                             <div>
                                 <i className="fas fa-frown fa-4x"/>
-                                <p className="result-percentage" style={{color:"red"}}>Negative {this.state.numbers[1]}%</p>
+                                <p className="result-percentage" style={{color:"red"}}>Negative {this.props.numbers[1]}%</p>
 
                             </div>
                             <div>
                                 <i className="fas fa-meh fa-4x"/>
-                                <p className="result-percentage" style={{color:"blue"}}>Neutral  {this.state.numbers[2]}%</p>
+                                <p className="result-percentage" style={{color:"blue"}}>Neutral  {this.props.numbers[2]}%</p>
 
                             </div>
 
