@@ -79,7 +79,7 @@
 .result-numbers{
     width: 600px;
     margin: 40px;
-    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(202, 149, 255), rgb(255, 255, 255)) repeat scroll 0% 0% !important;
+    background:ghostwhite;
     height: 250px;
     border-radius: 10%;
     font-size:22px;

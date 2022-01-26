@@ -11,15 +11,21 @@
 
 }
 
+.main-logo{
+    width:450px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.url-input-form{
+    margin-top:100px;
+}
 
 
 
-/*.analyze-button:hover{*/
-/*    background-color: gold !important;*/
-/*    color: black !important;*/
-/*}*/
+
 .input-url-video{
-    margin: 20px;
+    /*margin: 100px;*/
     border: 1px black solid;
     max-width: 700px !important;
     background-color: white !important;

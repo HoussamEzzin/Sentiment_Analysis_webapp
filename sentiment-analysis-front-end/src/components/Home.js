@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import Result from "./Result";
-import logo from './index.jpg';
+import logo from './index.png';
 import './Home.css'
 import './home.sass'
 import './home.scss'
@@ -133,14 +133,15 @@ class Home extends Component {
     render() {
         return (
             <div>
+                <div className="logo">
+                    <img src={logo} className="main-logo" alt=""/>
+                </div>
                 <div
                     className="input-url-video container d-flex flex-column justify-content-center align-items-center align-content-center">
-                    <div>
-                        <img src={logo} alt="logo" className={"logo"}/>
-                    </div>
+
 
                     <div>
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit} className="url-input-form">
                             <div
                                 className="d-flex flex-column align-content-center justify-content-center align-items-center">
 
@@ -153,7 +154,7 @@ class Home extends Component {
                                                 value={this.state.value}
                                                 onChange={this.handleChange}/>
                                             <span className="label">
-                                                Video URL
+                                                Youtube Video URL
                                             </span>
                                             <span className="focus-bg">
 
