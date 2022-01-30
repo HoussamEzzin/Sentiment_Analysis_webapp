@@ -23,6 +23,7 @@ class Home extends Component {
             comments: [],
             numbers:[],
             loaded: false,
+            videoTitle:''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -58,6 +59,8 @@ class Home extends Component {
                         });
                         let all = this.state.data;
                         let i = 0;
+                        // this needs some real re-construction
+                        //
                         while(true){
                             let comment = {
                                 "text":all[i],
