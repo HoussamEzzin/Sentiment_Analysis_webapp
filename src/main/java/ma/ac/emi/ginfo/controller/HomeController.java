@@ -23,6 +23,7 @@ import com.google.api.services.youtube.model.Comment;
 import com.google.api.services.youtube.model.CommentThread;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import com.google.api.services.youtube.model.CommentThreadReplies;
+import com.google.api.services.youtube.model.VideoListResponse;
 import com.kenai.jaffl.annotations.In;
 
 import ma.ac.emi.ginfo.service.AnalyzeService;
@@ -65,6 +66,9 @@ public class HomeController {
             .setApplicationName(APPLICATION_NAME)
             .build();
     }
+    
+    
+    
     private static YouTube.CommentThreads.List prepareListRequest(String videoId) throws Exception {
     	YouTube youtubeService = getService();
     	List<String> part= new ArrayList<String>();
@@ -197,7 +201,7 @@ public class HomeController {
 			
 			System.out.println("ACTUAL SCORE :"+commentScore);
 	}
-		
+		List<String>  resultItem = new ArrayList<>();
 		int posPourcentage = (countPos*100)/allCommentsText.size();
 		int negPourcentage = (countNeg*100)/allCommentsText.size();
 		int neutralPourcentage =(countNeutral*100)/allCommentsText.size() ;
@@ -205,9 +209,25 @@ public class HomeController {
 //		results.add(negPourcentage);
 //		results.add(neutralPourcentage);
 //		allComments.put(commentWithEmotion, results);
-		commentWithEmotion.add(String.valueOf(posPourcentage));
-		commentWithEmotion.add(String.valueOf(negPourcentage));
-		commentWithEmotion.add(String.valueOf(neutralPourcentage));
+		YouTube youtubeService = getService();
+		List<String> part= new ArrayList<String>();
+		part.add("snippet");
+		List<String> videoID= new ArrayList<String>();
+		videoID.add(videoId);
+		YouTube.Videos.List request = youtubeService.videos().list(part);
+		
+		VideoListResponse responsevideo = request.setKey(DEVELOPER_KEY)
+		            .setId(videoID)
+		            .execute();
+		String title = responsevideo.getItems().get(0).getSnippet().getTitle();
+
+		resultItem.add(String.valueOf(score));
+		resultItem.add(analyzeService.getSentiment(score));
+		resultItem.add(String.valueOf(posPourcentage));
+		resultItem.add(String.valueOf(negPourcentage));
+		resultItem.add(String.valueOf(neutralPourcentage));
+		resultItem.add(title);
+		response.add(resultItem);
 		
 
 		return response;
