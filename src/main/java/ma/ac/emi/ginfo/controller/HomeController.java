@@ -69,6 +69,7 @@ public class HomeController {
     	YouTube youtubeService = getService();
     	List<String> part= new ArrayList<String>();
 		part.add("snippet");
+		
         return youtubeService.commentThreads()
                       .list(part)
                       .setKey(DEVELOPER_KEY)
@@ -81,6 +82,7 @@ public class HomeController {
         for (CommentThread commentThread : commentThreads) {
             List<Comment> comments = Lists.newArrayList();
             comments.add(commentThread.getSnippet().getTopLevelComment());
+           
 
 //            CommentThreadReplies replies = commentThread.getReplies();
 //            if (replies != null)
@@ -97,9 +99,10 @@ public class HomeController {
         }
     
 	@GetMapping("/")
-	public List<String> home(@RequestParam String videoId) throws Exception {
+	public List<List<String>> home(@RequestParam String videoId) throws Exception {
 		
 		System.out.println("NEW REQUEST RECIEVED");
+		List<List<String>> response = new ArrayList<List<String>>();
 		Integer score = 0;
 		int commentScore = 0;
 		Integer countPos = 0;
@@ -117,7 +120,7 @@ public class HomeController {
 		
 //		System.out.println(datasetService.getHighNeg());
 		
-		List<String>  allComments = new ArrayList<>();
+		
 		
 		CommentThreadListResponse commentsPage = prepareListRequest(videoId).execute();
 		
@@ -150,6 +153,7 @@ public class HomeController {
 			}
 			
 			ArrayList<String> tokens = processTextService.processTextInput(comment_text);
+			String tokensString = String.join(", ", tokens);
 //			if(k==1) {
 //				for(String token: tokens) {
 //					System.out.println(token);
@@ -167,10 +171,20 @@ public class HomeController {
 					datasetService.getHighNeg(), datasetService.getMediumNeg(), 
 					datasetService.getLowNeg(), datasetService.getNegationWords());
 			score += commentScore;
+			List<String>  responseItemComment = new ArrayList<>();
 			if(k<6) {
 				emotion = analyzeService.getSentiment(commentScore);
-				commentWithEmotion.add(emotion);
+				
+				responseItemComment.add(comment_text);
+				responseItemComment.add(tokensString);
+				responseItemComment.add(String.valueOf(commentScore));
+				responseItemComment.add(emotion);
+				response.add(responseItemComment);
+//				commentWithEmotion.add(emotion);
+				
 			}
+			
+			
 			
 			if(commentScore > 0) {
 				countPos++;
@@ -196,6 +210,8 @@ public class HomeController {
 		commentWithEmotion.add(String.valueOf(neutralPourcentage));
 		
 
-		return commentWithEmotion;}
+		return response;
+		
+	}
 
 }
