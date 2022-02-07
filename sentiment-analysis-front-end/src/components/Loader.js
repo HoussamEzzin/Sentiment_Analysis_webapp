@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./Result.css";
 const Loader = () =>{
     return(
         <div className="loader center">

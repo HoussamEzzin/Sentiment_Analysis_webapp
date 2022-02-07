@@ -25,6 +25,8 @@
 .pourcentage-title{
     margin-bottom:50px;
     margin-top: 15px;
+    font-size:30px;
+    font-style: oblique;
 }
 
 .bounce-three{
@@ -32,15 +34,18 @@
 }
 
 .loading-section{
-    background-color: rgba(49,203,241,255);
+    background-color: white;
 
     max-width: 800px;
     margin-top: 40px;
+    margin-bottom: 50px;
     padding: 10px;
     border-radius: 5%;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
-
+.fa-cog{
+    color:#46cdcf;
+}
 .loading-text{
     font-size: 25px ;
     font-family: 'Abril Fatface', cursive;
@@ -53,7 +58,7 @@
 
     font-family: 'Shadows Into Light', cursive;
     line-height: 30px;
-    color:black;
+    color:#46cdcf;
 }
 .table-emotion{
     font-family: 'Abril Fatface', cursive;
@@ -94,9 +99,9 @@
 .global-results{
     width: 450px;
     margin: 40px;
-    background:ghostwhite;
-    height: 250px;
-    border-radius: 10%;
+    background:papayawhip;
+    height: 25vh;
+    border: 2px solid black;
     font-size:22px;
     min-width:500px;
 }

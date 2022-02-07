@@ -52,7 +52,16 @@ class Result extends Component{
                                         comment =>
                                             <tr>
                                                 <td>{comment["text"]}</td>
-                                                <td>{comment["score"]}</td>
+
+                                                {comment.score > 0 &&
+                                                <td  style={{color:"green"}}>{comment["score"]}</td>
+                                                }
+                                                {comment.score <0 &&
+                                                <td  style={{color:"red"}}>{comment["score"]}</td>
+                                                }
+                                                {comment.score === 0 &&
+                                                <td  style={{color:"blue"}}>{comment["score"]}</td>
+                                                }
                                                 {comment.emotion === "Positive" &&
                                                     <td className="table-emotion" style={{color:"green"}}>{comment.emotion}</td>
                                                 }
@@ -72,24 +81,47 @@ class Result extends Component{
                             </table>
                         </div>
                         <div className="global-results">
-                            <div>
-                                <h2>Video Title : {this.props.numbers[0].videoTitle} </h2>
-                            </div>
-                            <div className="d-flex flex-column">
-                                <div>
-                                    <h3>Global Results</h3>
-                                </div>
-                                <div className="d-flex ">
-                                    <div>
-                                        <p>Global Score : {this.props.numbers[0].scoreGlobal}</p>
+                            <table className="table table-bordered border border-dark  table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Video Title</th>
+                                        <th>{this.props.numbers[0].videoTitle}</th>
 
-                                    </div>
-                                    <div>
-                                        <p>Video Sentiment : {this.props.numbers[0].emotionGlobal}</p>
-                                    </div>
-                                </div>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Global Score</td>
 
-                            </div>
+
+                                    {this.props.numbers[0].scoreGlobal> 0 &&
+                                    <th  style={{color:"green"}}>this.props.numbers[0].scoreGlobal}</th>
+                                    }
+                                    {this.props.numbers[0].scoreGlobal <0 &&
+                                    <th  style={{color:"red"}}>{this.props.numbers[0].scoreGlobal}</th>
+                                    }
+                                    {this.props.numbers[0].scoreGlobal === 0 &&
+                                    <th  style={{color:"blue"}}>{this.props.numbers[0].scoreGlobal}</th>
+                                    }
+
+
+                                </tr>
+                                <tr>
+                                    <td>Global Emotion</td>
+
+                                    {this.props.numbers[0].emotionGlobal === "Positive" &&
+                                    <td className="table-emotion" style={{color:"green"}}>{this.props.numbers[0].emotionGlobal}</td>
+                                    }
+                                    {this.props.numbers[0].emotionGlobal === "Negative" &&
+                                    <td className="table-emotion" style={{color:"red"}}>{this.props.numbers[0].emotionGlobal}</td>
+                                    }
+                                    {this.props.numbers[0].emotionGlobal === "Neutral" &&
+                                    <td className="table-emotion" style={{color:"blue"}}>{this.props.numbers[0].emotionGlobal}</td>
+                                    }
+                                </tr>
+
+                                </tbody>
+                            </table>
                         </div>
                         <div className="result-numbers">
                             <div className="pourcentage-title">
@@ -124,7 +156,7 @@ class Result extends Component{
                                 default: [
                                     30,
                                     7,
-                                    "rgba(49,203,241,255)",
+                                    "white",
 
                                     2,
                                     1,
@@ -135,22 +167,22 @@ class Result extends Component{
                         >
                             <p className="loading-text">
                                 Tokenization and lower case
-                                <ThreeBounce className="bounce-three"  timingFunction='linear' gutter={20} color={"black"} />
+                                <ThreeBounce className="bounce-three"  timingFunction='linear' gutter={20} color={"#46cdcf"} />
                                 <br/>
                                 Normalization
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
                                 <br/>
                                 Removing step words
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
                                 <br/>
                                 Lemmatizing
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
                                 <br/>
                                 Calculating score
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
                                 <br/>
                                 Determining sentiments
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
 
                             </p>
 
