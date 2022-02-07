@@ -37,6 +37,7 @@ class Result extends Component{
                                 <thead>
                                 <tr>
                                     <th className="arabic-comment">Comment</th>
+                                    <th>Score</th>
                                     <th>Sentiment</th>
                                 </tr>
                                 </thead>
@@ -48,6 +49,7 @@ class Result extends Component{
                                         comment =>
                                             <tr>
                                                 <td>{comment["text"]}</td>
+                                                <td>{comment["score"]}</td>
                                                 {comment.emotion === "Positive" &&
                                                     <td className="table-emotion" style={{color:"green"}}>{comment.emotion}</td>
                                                 }
@@ -70,17 +72,17 @@ class Result extends Component{
                             <div>
                                 {/*<img src={happy} alt="happy" className="emoji"/>*/}
                                 <i className="fas fa-smile-beam fa-4x"/>
-                                <p className="result-percentage" style={{color:"green"}}>Positive {this.props.numbers[0]}%</p>
+                                <p className="result-percentage" style={{color:"green"}}>Positive {this.props.numbers["posPourcentage"]}%</p>
 
                             </div>
                             <div>
                                 <i className="fas fa-frown fa-4x"/>
-                                <p className="result-percentage" style={{color:"red"}}>Negative {this.props.numbers[1]}%</p>
+                                <p className="result-percentage" style={{color:"red"}}>Negative {this.props.numbers["negPourcentage"]}%</p>
 
                             </div>
                             <div>
                                 <i className="fas fa-meh fa-4x"/>
-                                <p className="result-percentage" style={{color:"blue"}}>Neutral  {this.props.numbers[2]}%</p>
+                                <p className="result-percentage" style={{color:"blue"}}>Neutral  {this.props.numbers["neutralPourcentage"]}%</p>
 
                             </div>
 

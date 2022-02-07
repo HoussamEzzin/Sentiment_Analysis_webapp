@@ -23,7 +23,6 @@ class Home extends Component {
             comments: [],
             numbers:[],
             loaded: false,
-            videoTitle:''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -59,6 +58,29 @@ class Home extends Component {
                         });
                         let all = this.state.data;
                         let i = 0;
+
+                        for(let i=0; i<all.length; i++){
+                            if(i === all.length -1) {
+                                let numbers = {
+                                    "scoreGlobal": all[i][0],
+                                    "emotionGlobal":all[i][1],
+                                    "posPourcentage": all[i][2],
+                                    "negPourcentage":all[i][3],
+                                    "neutralPourcentage":all[i][4],
+                                    "videoTitle":all[i][5],
+                                }
+                                this.state.numbers.push(numbers);
+                            }else{
+                                let comment= {
+                                    "text": all[i][0],
+                                    "tokens":all[i][1],
+                                    "score":all[i][2],
+                                    "emotion":all[i][3],
+                                }
+                                this.state.comments.push(comment);
+                            }
+
+                        }
                         // this needs some real re-construction
                         //
                         /*
