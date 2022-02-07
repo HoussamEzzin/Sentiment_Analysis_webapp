@@ -219,6 +219,18 @@ class Home extends Component {
                                                     />}
 
                 </div>
+                <div>
+                    {this.state.submit === '' ? (<div className="footer">
+
+                        <h4 className="footer-text">Made by <a className="link-github" href="https://github.com/HoussamEzzin">Ezzin Houssam</a> & <a className="link-github" href="https://github.com/Hiba999">Boukhrissi Hiba</a></h4>
+                    </div>) : <div className="footer-submitted">
+
+                        <h4 className="footer-text">Made by <a className="link-github" href="https://github.com/HoussamEzzin">Ezzin Houssam</a> & <a className="link-github" href="https://github.com/Hiba999">Boukhrissi Hiba</a></h4>
+                    </div>
+
+                    }
+                </div>
+
             </div>
         )
     }

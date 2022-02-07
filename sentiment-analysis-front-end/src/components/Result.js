@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import HomeService from "../services/HomeService";
 import './Result.css';
+import {  Popup } from 'semantic-ui-react'
 
 import happy from "./happy.png";
 import sad from "./sad.png";
@@ -35,6 +36,14 @@ class Result extends Component{
             <div className="container d-flex align-items-center justify-content-center align-content-center">
                 {this.props.loaded ? (
                     <div className="d-flex  result-section ">
+                        <div className="help">
+                            <Popup className="dev-pop-up" content={<ul className="skills-list-pop">
+                                <div className="help-pop-up">
+                                    Hover on comments to see the tokens
+                                </div>
+                            </ul>} trigger={<i className="fa fa-question-circle fa-3x"/>} />
+
+                        </div>
                         <div className="comments-table">
                             <table className="table table-bordered border border-dark  table-hover">
                                 <thead>
@@ -51,7 +60,13 @@ class Result extends Component{
                                     this.props.comments.map(
                                         comment =>
                                             <tr>
-                                                <td>{comment["text"]}</td>
+                                                <Popup className="dev-pop-up" content={<ul className="skills-list-pop">
+                                                    <div className="tokens-pop-up">
+                                                        {comment["tokens"]}
+                                                    </div>
+                                                </ul>} trigger={<td>{comment["text"]}</td>} />
+
+
 
                                                 {comment.score > 0 &&
                                                 <td  style={{color:"green"}}>{comment["score"]}</td>
@@ -167,22 +182,22 @@ class Result extends Component{
                         >
                             <p className="loading-text">
                                 Tokenization and lower case
-                                <ThreeBounce className="bounce-three"  timingFunction='linear' gutter={20} color={"#46cdcf"} />
+                                <ThreeBounce className="bounce-three"  timingFunction='linear' gutter={20} color={"black"} />
                                 <br/>
                                 Normalization
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
                                 <br/>
                                 Removing step words
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
                                 <br/>
                                 Lemmatizing
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
                                 <br/>
                                 Calculating score
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
                                 <br/>
                                 Determining sentiments
-                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"#46cdcf"}/>
+                                <ThreeBounce className="bounce-three" timingFunction='linear' gutter={20} color={"black"}/>
 
                             </p>
 

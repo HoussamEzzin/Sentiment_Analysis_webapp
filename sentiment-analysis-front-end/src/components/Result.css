@@ -43,8 +43,28 @@
     border-radius: 5%;
     /*border: 1px solid black;*/
 }
-.fa-cog{
-    color:#46cdcf;
+.help{
+   margin-top:100px;
+}
+.fa-question-circle{
+    color:white;
+}
+.help-pop-up{
+    background-color: white;
+    color:black;
+    padding: 20px;
+    border-radius: 15%;
+    font-size:18px;
+    font-weight: bold;
+    font-style: italic;
+}
+.tokens-pop-up{
+    background-color: #46cdcf;
+    padding: 20px;
+    color:black;
+    font-size:28px;
+    font-weight: bold;
+    border-radius: 20%;
 }
 .loading-text{
     font-size: 25px ;
@@ -58,7 +78,7 @@
 
     font-family: 'Shadows Into Light', cursive;
     line-height: 30px;
-    color:#46cdcf;
+    color:black;
 }
 .table-emotion{
     font-family: 'Abril Fatface', cursive;
@@ -81,7 +101,7 @@
 
 }
 .comments-table{
-    background-color: rgba(253,190,136,255) !important;
+    background-color: white !important;
     height: 100%;
     margin:40px;
 
@@ -89,7 +109,7 @@
 .result-numbers{
     width: 600px;
     margin: 40px;
-    background:ghostwhite;
+    background:white;
     height: 250px;
     border-radius: 10%;
     font-size:22px;
@@ -99,7 +119,7 @@
 .global-results{
     width: 450px;
     margin: 40px;
-    background:papayawhip;
+    background:white;
     height: 25vh;
     border: 2px solid black;
     font-size:22px;

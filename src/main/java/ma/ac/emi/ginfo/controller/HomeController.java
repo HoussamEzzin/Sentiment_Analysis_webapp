@@ -157,7 +157,7 @@ public class HomeController {
 			}
 			
 			ArrayList<String> tokens = processTextService.processTextInput(comment_text);
-			String tokensString = String.join(", ", tokens);
+			String tokensString = String.join(" ", tokens);
 //			if(k==1) {
 //				for(String token: tokens) {
 //					System.out.println(token);

@@ -1,6 +1,6 @@
 .logo{
-    width: 250px;
-    height: 200px;
+    width: 150px;
+    height: 100px;
     margin: 50px;
 }
 
@@ -12,8 +12,8 @@
 }
 
 .main-logo{
-    width:450px;
-    height: 300px;
+    width:300px;
+    height: 200px;
     border-radius: 50%;
 }
 
@@ -29,4 +29,44 @@
     border: 1px black solid;
     max-width: 700px !important;
     background-color: white !important;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    color:darkslategray;
+    width:22%;
+    border-radius: 20%;
+    font-weight: bold;
+    font-style: italic;
+}
+.footer-submitted{
+    position: static;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    color:darkslategray;
+    width:22%;
+    border-radius: 20%;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.footer-text{
+    font-size:18px;
+}
+
+.link-github{
+    text-decoration: inherit;
+    color: inherit;
+    cursor: pointer;
+    color:darkgoldenrod;
 }
