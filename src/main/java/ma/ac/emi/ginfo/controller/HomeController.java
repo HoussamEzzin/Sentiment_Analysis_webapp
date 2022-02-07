@@ -145,9 +145,9 @@ public class HomeController {
 		int k = 0;
 		List<String> commentWithEmotion = new ArrayList<>();
 		for(String comment_text: allCommentsText) {
-			if( k == 7 ) {
-				break;
-			}
+//			if( k == 7 ) {
+//				break;
+//			}
 			System.out.println(k+"/"+allCommentsText.size());
 			
 			

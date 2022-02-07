@@ -61,24 +61,18 @@ class Home extends Component {
                         let i = 0;
                         // this needs some real re-construction
                         //
-                        while(true){
-                            let comment = {
-                                "text":all[i],
-                                "emotion":all[++i]
+                        /*
+                        * let comment = {
+                                "text":,
+                                "tokens";,
+                                "score":,
+                                "emotion":,
+                                *
                             }
-
-                            this.state.comments.push(comment);
-                            i++;
-                            if(i>9){
-                                break;
-                            }
-
-                        }
-
-
-                        for(let i = 10 ;i<=12;i++){
-                            this.state.numbers.push(all[i]);
-                        }
+                        * */
+                        console.log(all);
+                        console.log("****");
+                        console.log(all[0]);
 
                         this.setState({
                             loaded:true,
