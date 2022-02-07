@@ -22,7 +22,10 @@ class Result extends Component{
 
     // componentDidMount() {
     //     // let validationPattern = /https:\/\/www.youtube.com\/watch?v=/i;
-    //
+    //     console.log(this.props.numbers);
+    //     console.log("**")
+    //     console.log(this.props.numbers.posPourcentage);
+    //     console.log(this.props.numbers["posPourcentage"]);
     // }
 
 
@@ -68,25 +71,31 @@ class Result extends Component{
                                 </tbody>
                             </table>
                         </div>
-                        <div className="d-flex  justify-content-around align-items-center result-numbers">
-                            <div>
-                                {/*<img src={happy} alt="happy" className="emoji"/>*/}
-                                <i className="fas fa-smile-beam fa-4x"/>
-                                <p className="result-percentage" style={{color:"green"}}>Positive {this.props.numbers["posPourcentage"]}%</p>
+                        <div className="result-numbers">
+                            <div className="pourcentage-title">
+                                Comments Percentages
+                            </div>
+                            <div className="d-flex  justify-content-around align-items-center ">
+                                <div>
+                                    {/*<img src={happy} alt="happy" className="emoji"/>*/}
+                                    <i className="fas fa-smile-beam fa-4x"/>
+                                    <p className="result-percentage" style={{color:"green"}}>Positive {this.props.numbers[0]["posPourcentage"]}%</p>
+
+                                </div>
+                                <div>
+                                    <i className="fas fa-frown fa-4x"/>
+                                    <p className="result-percentage" style={{color:"red"}}>Negative {this.props.numbers[0]["negPourcentage"]}%</p>
+
+                                </div>
+                                <div>
+                                    <i className="fas fa-meh fa-4x"/>
+                                    <p className="result-percentage" style={{color:"blue"}}>Neutral  {this.props.numbers[0]["neutralPourcentage"]}%</p>
+
+                                </div>
 
                             </div>
-                            <div>
-                                <i className="fas fa-frown fa-4x"/>
-                                <p className="result-percentage" style={{color:"red"}}>Negative {this.props.numbers["negPourcentage"]}%</p>
-
-                            </div>
-                            <div>
-                                <i className="fas fa-meh fa-4x"/>
-                                <p className="result-percentage" style={{color:"blue"}}>Neutral  {this.props.numbers["neutralPourcentage"]}%</p>
-
-                            </div>
-
                         </div>
+
                     </div>
                 ):<div className="loading-section d-flex justify-content-evenly align-items-center ">
                     <div>

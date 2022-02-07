@@ -92,10 +92,10 @@ class Home extends Component {
                                 *
                             }
                         * */
-                        console.log(all);
+                        console.log(this.state.numbers);
                         console.log("****");
-                        console.log(all[0]);
-
+                        console.log(this.state.numbers[0].posPourcentage);
+                        console.log(this.state.numbers[0]["posPourcentage"]);
                         this.setState({
                             loaded:true,
                         })
