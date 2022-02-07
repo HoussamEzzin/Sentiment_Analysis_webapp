@@ -90,6 +90,17 @@
     font-size:22px;
     min-width:500px;
 }
+
+.global-results{
+    width: 450px;
+    margin: 40px;
+    background:ghostwhite;
+    height: 250px;
+    border-radius: 10%;
+    font-size:22px;
+    min-width:500px;
+}
+
 .arabic-comment{
     font-family: 'Changa', sans-serif;
 }

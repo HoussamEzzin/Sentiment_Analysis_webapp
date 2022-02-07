@@ -71,6 +71,26 @@ class Result extends Component{
                                 </tbody>
                             </table>
                         </div>
+                        <div className="global-results">
+                            <div>
+                                <h2>Video Title : {this.props.numbers[0].videoTitle} </h2>
+                            </div>
+                            <div className="d-flex flex-column">
+                                <div>
+                                    <h3>Global Results</h3>
+                                </div>
+                                <div className="d-flex ">
+                                    <div>
+                                        <p>Global Score : {this.props.numbers[0].scoreGlobal}</p>
+
+                                    </div>
+                                    <div>
+                                        <p>Video Sentiment : {this.props.numbers[0].emotionGlobal}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                         <div className="result-numbers">
                             <div className="pourcentage-title">
                                 Comments Percentages
