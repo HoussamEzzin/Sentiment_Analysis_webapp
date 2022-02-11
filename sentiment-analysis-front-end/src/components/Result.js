@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import HomeService from "../services/HomeService";
 import './Result.css';
 import {  Popup } from 'semantic-ui-react'
 
-import happy from "./happy.png";
-import sad from "./sad.png";
-import neutral from "./neutral.png";
+
 import Loader from "./Loader";
 import LoadingEffect from "react-loading-text";
 import ThreeBounce from "better-react-spinkit/dist/ThreeBounce";
@@ -13,12 +10,7 @@ import ThreeBounce from "better-react-spinkit/dist/ThreeBounce";
 
 class Result extends Component{
 //d
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //
-        // }
-    }
+
 
 
     // componentDidMount() {
@@ -74,7 +66,7 @@ class Result extends Component{
                                                 {comment.score <0 &&
                                                 <td  style={{color:"red"}}>{comment["score"]}</td>
                                                 }
-                                                {comment.score === 0 &&
+                                                {comment.score === "0" &&
                                                 <td  style={{color:"blue"}}>{comment["score"]}</td>
                                                 }
                                                 {comment.emotion === "Positive" &&
@@ -110,7 +102,7 @@ class Result extends Component{
 
 
                                     {this.props.numbers[0].scoreGlobal> 0 &&
-                                    <th  style={{color:"green"}}>this.props.numbers[0].scoreGlobal}</th>
+                                    <th  style={{color:"green"}}>{this.props.numbers[0].scoreGlobal}</th>
                                     }
                                     {this.props.numbers[0].scoreGlobal <0 &&
                                     <th  style={{color:"red"}}>{this.props.numbers[0].scoreGlobal}</th>

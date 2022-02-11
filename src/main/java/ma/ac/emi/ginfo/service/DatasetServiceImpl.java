@@ -39,8 +39,10 @@ public class DatasetServiceImpl implements DatasetService {
             String str;
 
             while ((str = in.readLine()) != null) {
+            	//st = st.replaceAll("\\s+","")
 //                System.out.println(str);
-                array.add(str.strip());
+            	str = str.replaceAll("\\s+","");
+                array.add(str);
             }
 
             in.close();
